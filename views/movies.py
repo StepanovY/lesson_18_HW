@@ -11,6 +11,9 @@ movies_schema = MovieSchema(many=True)
 
 
 @movies_ns.route('/')
+@movies_ns.param('director_id')
+@movies_ns.param('genre_id')
+@movies_ns.param('year')
 class MoviesView(Resource):
     def get(self):
         all_movies = movies_service.get_all()

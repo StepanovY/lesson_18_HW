@@ -1,3 +1,6 @@
+from typing import List
+
+from dao.model.movies import Movie
 from dao.movies_dao import MoviesDAO
 
 
@@ -5,7 +8,7 @@ class MoviesService:
     def __init__(self, dao: MoviesDAO):
         self.dao = dao
 
-    def get_one(self, mid):
+    def get_one(self, mid) -> List[Movie]:
         return self.dao.get_one(mid)
 
     def get_all(self):
@@ -47,10 +50,10 @@ class MoviesService:
             movie.year = data.get('year')
         if 'rating' in data:
             movie.rating = data.get('rating')
-        if 'director' in data:
-            movie.director = data.get('director')
-        if 'genre' in data:
-            movie.genre = data.get('genre')
+        if 'director_id' in data:
+            movie.director_id = data.get('director_id')
+        if 'genre_id' in data:
+            movie.genre_id = data.get('genre_id')
 
         self.dao.update(movie)
 
